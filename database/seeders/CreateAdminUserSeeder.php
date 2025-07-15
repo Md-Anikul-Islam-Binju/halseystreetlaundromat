@@ -23,7 +23,7 @@ class CreateAdminUserSeeder extends Seeder
             'phone' => '01905256528',
             'address' => 'Dhaka, Bangladesh',
             'is_registration_by' => 'admin',
-            'password' => bcrypt('halseystreetlaundromat@2025')
+            'password' => bcrypt('admin@2035')
         ]);
 
         $role = Role::create(['name' => 'Super Admin']);

@@ -42,7 +42,7 @@ class UserOrderController extends Controller
     public function userDryOrderStore(Request $request)
     {
 
-
+        //dd($request->all());
         // Validate the request
         $validated = $request->validate([
             'items' => 'required|array',
@@ -57,13 +57,13 @@ class UserOrderController extends Controller
         $totalAmount = 0;
         $orderItems = [];
 
-        if ($request->delivery_speed_type == 'Standard') {
-            $delivery_charge = 30;
-        } elseif ($request->delivery_speed_type == 'Express') {
-            $delivery_charge = 50;
-        } else {
-            $delivery_charge = 0;
-        }
+//        if ($request->delivery_speed_type == 'Standard') {
+//            $delivery_charge = 30;
+//        } elseif ($request->delivery_speed_type == 'Express') {
+//            $delivery_charge = 50;
+//        } else {
+//            $delivery_charge = 0;
+//        }
 
 
 
@@ -94,12 +94,17 @@ class UserOrderController extends Controller
             'pic_spot' => $request->pic_spot,
             'instructions' => $request->instructions,
             'instructions_text' => $request->instructions_text,
-            'delivery_speed_type' => $request->delivery_speed_type,
-            'detergent_type' => $request->detergent_type,
+
+            'delivery_speed_type' => 'Standard',
+
+
+            'detergent_type' => $request->detergent_type?? 'Regular',
             'is_delicate_cycle' => $request->is_delicate_cycle ?? 0,
             'is_hang_dry' => $request->is_hang_dry ?? 0,
             'is_return_hanger' => $request->is_return_hanger ?? 0,
             'is_additional_request' => $request->is_additional_request ?? 0,
+
+
             'coverage_type' => $request->coverage_type,
 
         ]);
@@ -123,7 +128,7 @@ class UserOrderController extends Controller
                 'total_amount' => $totalAmount,
                 'status' => 'pending',
                 'order_type'=> 'dry',
-                'delivery_charge' => $delivery_charge,
+                'delivery_charge' => 0,
             ]);
         }
         Toastr::success('Order Successfully', 'Success');

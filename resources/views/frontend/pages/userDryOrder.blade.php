@@ -74,204 +74,208 @@
                                 <button type="button" class="app-btn next-btn">Continue</button>
                             </div>
                         </div>
-                        <div class="step w-100" data-step="2">
-                            <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">
-                                <div class="w-100">
-                                    <h5 class="text-start my-2 text-uppercase">Pickup Speed</h5>
-                                    <p class="text-capitalize">Please choose your desired delivery speed</p>
-                                </div>
-                                <div class="w-100">
-                                    <div class="card selectable-card">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <input class="form-check-input" type="radio"
-                                                            name="delivery_speed_type" id="standerd delivery"
-                                                            value="Standard" required>
-                                                        <label class="form-check-label" for="standerd delivery"> Standard
-                                                            Delivery </label>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <ul class="list-unstyled mt-2 w-100">
-                                                    <li class="d-flex gap-2 align-items-center"><i
-                                                            class="fa-regular fa-ticket"
-                                                            style="transform: rotate(90deg);"></i><span>Place order by 3pm
-                                                            today</span></li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-car"></i><span>Pickup by 8pm today</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-truck"></i><span>Delivered by 8pm
-                                                            tomorrow</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-circle-dollar"></i><span>$30 minimum
-                                                            charge</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card selectable-card">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <input class="form-check-input" type="radio"
-                                                            name="delivery_speed_type" id="express_delivery" value="Express"
-                                                            required>
-                                                        <label class="form-check-label" for="express_delivery">
-                                                            Express Delivery
-                                                        </label>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <ul class="list-unstyled mt-2">
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-ticket"
-                                                            style="transform: rotate(90deg);"></i>
-                                                        <span>Place order by 10am today</span>
-                                                    </li>
 
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-car"></i><span>Pickup by 2pm today</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-truck"></i><span>Delivered by 8pm same
-                                                            day</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-clothes-hanger"></i><span>Hang-dry
-                                                            unavailable</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-start">
-                                                        <i class="fa-regular fa-weight-scale" style="margin-top: 6px;"></i>
-                                                        <span>Weight may not exceed 60pounds</span>
-                                                    </li>
-                                                    <li class="d-flex gap-2 align-items-center">
-                                                        <i class="fa-regular fa-circle-dollar"></i>
-                                                        <span>$50 minimum charge</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-100 d-flex align-items-center justify-content-between">
-                                    <button type="button" class="app-prev-btn prev-btn">Previous</button>
-                                    <button type="button" class="app-next-btn next-btn">Next</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step w-100" data-step="3">
-                            <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">
-                                <div class="w-100">
-                                    <h5 class="text-start my-2 text-uppercase">Laundry Care</h5>
-                                </div>
-                                <div class="w-100">
-                                    <label for="exampleDataList" class="form-label">Select Detergent</label>
-                                    <select class="form-select" name="detergent_type" aria-label="Default select example"
-                                        required>
-                                        <option selected disabled value="">Select Detergent</option>
-                                        <option value="Hypoallergenic">Hypoallergenic</option>
-                                        <option value="Premium Scented">Premium Scented</option>
-                                        <option value="Eco Friendly">Eco Friendly</option>
-                                        <option value="Provide">I will Provide</option>
-                                    </select>
-                                </div>
-                                <div class="w-100">
-                                    <h6 class="mb-2">Check all that apply</h6>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="is_delicate_cycle" type="checkbox" value="1"
-                                            id="cycle">
-                                        <label class="form-check-label" for="cycle">
-                                            Delicate cycle
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="is_hang_dry" type="checkbox" value="1"
-                                            id="hang_dry" data-bs-toggle="modal" data-bs-target="#hang_dry_modal"
-                                            aria-controls="hang_dry_modal">
-                                        <label class="form-check-label" for="hang_dry">
-                                            Hang-dry
-                                        </label>
-                                        <div class="modal fade" id="hang_dry_modal" data-bs-keyboard="false" tabindex="-1"
-                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Instructions
-                                                            for Hang-dry</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="text-black" style="font-size: small;">
-                                                            Please have hangers in the bag and label. Delicate items
-                                                            must be separated.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="is_return_hanger" type="checkbox" value="1"
-                                            id="return_items">
-                                        <label class="form-check-label" for="return_items">
-                                            Return items on hangers
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="d-flex align-items-center justify-content-between gap-3 w-100">
-                                            <div>
-                                                <input class="form-check-input" name="is_additional_request" type="checkbox"
-                                                    value="1" id="additional_rqst">
-                                                <label class="form-check-label" for="additional_rqst">
-                                                    Additional Requests
-                                                </label>
-                                            </div>
-                                            <span class="instruction-icon" role="button" data-bs-toggle="modal"
-                                                data-bs-target="#additional_request" aria-controls="additional_request">
-                                                <i class="fa-regular fa-circle-question fs-5"></i>
-                                            </span>
-                                            <div class="modal fade" id="additional_request" data-bs-keyboard="false"
-                                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Additional
-                                                                Requests</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p class="text-black" style="font-size: small;">Laundry Pros
-                                                                provide a wash-dry-fold service.</p>
-                                                            <p class="text-black my-2" style="font-size: small;">They do not
-                                                                look for stains, treat stains, or use any stain removal
-                                                                products.</p>
-                                                            <p class="text-black my-2" style="font-size: small;">They do not
-                                                                offer additional services like ironing, lint remoal, shoe
-                                                                cleaning, hand washing.</p>
-                                                            <p class="text-black" style="font-size: small;">If you request
-                                                                specific products other detergent, please leave them out for
-                                                                pickup.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-100 d-flex align-items-center justify-content-between">
-                                    <button type="button" class="app-prev-btn prev-btn">Previous</button>
-                                    <button type="button" class="app-next-btn next-btn">Next</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step w-100" data-step="4" style="scroll-behavior: smooth;">
+
+{{--                        <div class="step w-100" data-step="2">--}}
+{{--                            <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">--}}
+{{--                                <div class="w-100">--}}
+{{--                                    <h5 class="text-start my-2 text-uppercase">Pickup Speed</h5>--}}
+{{--                                    <p class="text-capitalize">Please choose your desired delivery speed</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100">--}}
+{{--                                    <div class="card selectable-card">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <div class="form-check">--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div>--}}
+{{--                                                        <input class="form-check-input" type="radio"--}}
+{{--                                                            name="delivery_speed_type" id="standerd delivery"--}}
+{{--                                                            value="Standard" required>--}}
+{{--                                                        <label class="form-check-label" for="standerd delivery"> Standard--}}
+{{--                                                            Delivery </label>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+{{--                                                <ul class="list-unstyled mt-2 w-100">--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center"><i--}}
+{{--                                                            class="fa-regular fa-ticket"--}}
+{{--                                                            style="transform: rotate(90deg);"></i><span>Place order by 3pm--}}
+{{--                                                            today</span></li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-car"></i><span>Pickup by 8pm today</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-truck"></i><span>Delivered by 8pm--}}
+{{--                                                            tomorrow</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-circle-dollar"></i><span>$30 minimum--}}
+{{--                                                            charge</span>--}}
+{{--                                                    </li>--}}
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="card selectable-card">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <div class="form-check">--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div>--}}
+{{--                                                        <input class="form-check-input" type="radio"--}}
+{{--                                                            name="delivery_speed_type" id="express_delivery" value="Express"--}}
+{{--                                                            required>--}}
+{{--                                                        <label class="form-check-label" for="express_delivery">--}}
+{{--                                                            Express Delivery--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+{{--                                                <ul class="list-unstyled mt-2">--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-ticket"--}}
+{{--                                                            style="transform: rotate(90deg);"></i>--}}
+{{--                                                        <span>Place order by 10am today</span>--}}
+{{--                                                    </li>--}}
+
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-car"></i><span>Pickup by 2pm today</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-truck"></i><span>Delivered by 8pm same--}}
+{{--                                                            day</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-clothes-hanger"></i><span>Hang-dry--}}
+{{--                                                            unavailable</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-start">--}}
+{{--                                                        <i class="fa-regular fa-weight-scale" style="margin-top: 6px;"></i>--}}
+{{--                                                        <span>Weight may not exceed 60pounds</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="d-flex gap-2 align-items-center">--}}
+{{--                                                        <i class="fa-regular fa-circle-dollar"></i>--}}
+{{--                                                        <span>$50 minimum charge</span>--}}
+{{--                                                    </li>--}}
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 d-flex align-items-center justify-content-between">--}}
+{{--                                    <button type="button" class="app-prev-btn prev-btn">Previous</button>--}}
+{{--                                    <button type="button" class="app-next-btn next-btn">Next</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="step w-100" data-step="3">--}}
+{{--                            <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">--}}
+{{--                                <div class="w-100">--}}
+{{--                                    <h5 class="text-start my-2 text-uppercase">Laundry Care</h5>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100">--}}
+{{--                                    <label for="exampleDataList" class="form-label">Select Detergent</label>--}}
+{{--                                    <select class="form-select" name="detergent_type" aria-label="Default select example"--}}
+{{--                                        required>--}}
+{{--                                        <option selected disabled value="">Select Detergent</option>--}}
+{{--                                        <option value="Hypoallergenic">Hypoallergenic</option>--}}
+{{--                                        <option value="Premium Scented">Premium Scented</option>--}}
+{{--                                        <option value="Eco Friendly">Eco Friendly</option>--}}
+{{--                                        <option value="Provide">I will Provide</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100">--}}
+{{--                                    <h6 class="mb-2">Check all that apply</h6>--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <input class="form-check-input" name="is_delicate_cycle" type="checkbox" value="1"--}}
+{{--                                            id="cycle">--}}
+{{--                                        <label class="form-check-label" for="cycle">--}}
+{{--                                            Delicate cycle--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <input class="form-check-input" name="is_hang_dry" type="checkbox" value="1"--}}
+{{--                                            id="hang_dry" data-bs-toggle="modal" data-bs-target="#hang_dry_modal"--}}
+{{--                                            aria-controls="hang_dry_modal">--}}
+{{--                                        <label class="form-check-label" for="hang_dry">--}}
+{{--                                            Hang-dry--}}
+{{--                                        </label>--}}
+{{--                                        <div class="modal fade" id="hang_dry_modal" data-bs-keyboard="false" tabindex="-1"--}}
+{{--                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">--}}
+{{--                                            <div class="modal-dialog modal-dialog-centered">--}}
+{{--                                                <div class="modal-content">--}}
+{{--                                                    <div class="modal-header">--}}
+{{--                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Instructions--}}
+{{--                                                            for Hang-dry</h1>--}}
+{{--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"--}}
+{{--                                                            aria-label="Close"></button>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="modal-body">--}}
+{{--                                                        <p class="text-black" style="font-size: small;">--}}
+{{--                                                            Please have hangers in the bag and label. Delicate items--}}
+{{--                                                            must be separated.</p>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <input class="form-check-input" name="is_return_hanger" type="checkbox" value="1"--}}
+{{--                                            id="return_items">--}}
+{{--                                        <label class="form-check-label" for="return_items">--}}
+{{--                                            Return items on hangers--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-check">--}}
+{{--                                        <div class="d-flex align-items-center justify-content-between gap-3 w-100">--}}
+{{--                                            <div>--}}
+{{--                                                <input class="form-check-input" name="is_additional_request" type="checkbox"--}}
+{{--                                                    value="1" id="additional_rqst">--}}
+{{--                                                <label class="form-check-label" for="additional_rqst">--}}
+{{--                                                    Additional Requests--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                            <span class="instruction-icon" role="button" data-bs-toggle="modal"--}}
+{{--                                                data-bs-target="#additional_request" aria-controls="additional_request">--}}
+{{--                                                <i class="fa-regular fa-circle-question fs-5"></i>--}}
+{{--                                            </span>--}}
+{{--                                            <div class="modal fade" id="additional_request" data-bs-keyboard="false"--}}
+{{--                                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">--}}
+{{--                                                <div class="modal-dialog modal-dialog-centered">--}}
+{{--                                                    <div class="modal-content">--}}
+{{--                                                        <div class="modal-header">--}}
+{{--                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Additional--}}
+{{--                                                                Requests</h1>--}}
+{{--                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"--}}
+{{--                                                                aria-label="Close"></button>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="modal-body">--}}
+{{--                                                            <p class="text-black" style="font-size: small;">Laundry Pros--}}
+{{--                                                                provide a wash-dry-fold service.</p>--}}
+{{--                                                            <p class="text-black my-2" style="font-size: small;">They do not--}}
+{{--                                                                look for stains, treat stains, or use any stain removal--}}
+{{--                                                                products.</p>--}}
+{{--                                                            <p class="text-black my-2" style="font-size: small;">They do not--}}
+{{--                                                                offer additional services like ironing, lint remoal, shoe--}}
+{{--                                                                cleaning, hand washing.</p>--}}
+{{--                                                            <p class="text-black" style="font-size: small;">If you request--}}
+{{--                                                                specific products other detergent, please leave them out for--}}
+{{--                                                                pickup.</p>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="w-100 d-flex align-items-center justify-content-between">--}}
+{{--                                    <button type="button" class="app-prev-btn prev-btn">Previous</button>--}}
+{{--                                    <button type="button" class="app-next-btn next-btn">Next</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+
+                        <div class="step w-100" data-step="2" style="scroll-behavior: smooth;">
                             <h4 class="card-title text-start">Categories</h4>
                             <div
                                 class="all-catergories-btn d-flex justify-content-start align-items-center gap-2 flex-wrap mb-4">
@@ -327,7 +331,8 @@
                                     <button type="button" class="app-next-btn next-btn">Next</button>
                                 </div>
                         </div>
-                        <div class="step w-100" data-step="5">
+
+                        <div class="step w-100" data-step="3">
                             <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">
                                 <div class="w-100">
                                     <h5 class="text-start my-2 text-uppercase">Coverage</h5>
@@ -416,7 +421,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="step w-100" data-step="6">
+                        <div class="step w-100" data-step="4">
                             <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">
                                 <h3 class="text-start my-2 text-uppercase">Payment</h3>
                                 <div class="w-100">
@@ -482,8 +487,8 @@
                     <div class="circle step-circle" data-step="2">2</div>
                     <div class="circle step-circle" data-step="3">3</div>
                     <div class="circle step-circle" data-step="4">4</div>
-                    <div class="circle step-circle" data-step="5">5</div>
-                    <div class="circle step-circle" data-step="6">6</div>
+{{--                    <div class="circle step-circle" data-step="5">5</div>--}}
+{{--                    <div class="circle step-circle" data-step="6">6</div>--}}
                 </div>
             </div>
         </div>
