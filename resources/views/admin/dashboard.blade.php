@@ -65,6 +65,128 @@
         @endcan
 
         @can('login-log-list')
+            <dic class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex">
+                                <h4 class="page-title">Dry Order!</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Customer</th>
+                                    <th>Invoice</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($dryOrders as $key=>$orderData)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>
+                                            {{$orderData->user->name}}<br>
+                                            {{$orderData->user->phone}}<br>
+                                        </td>
+                                        <td>
+                                            {{$orderData->invoice_number}}
+                                        </td>
+                                        <td>
+                                            {{$orderData->order_date}}
+                                        </td>
+                                        <td>
+                                            {{$orderData->total_amount + $orderData->payment->delivery_charge??0}}
+                                        </td>
+                                        <td>
+                                            @if($orderData->status == 'pending')
+                                                <span class="badge badge-outline-success">Pending</span>
+                                            @elseif($orderData->status == 'completed')
+                                                <span class="badge badge-outline-info">Completed</span>
+                                            @elseif($orderData->status == 'decline')
+                                                <span class="badge badge-danger">Decline</span>
+                                            @endif
+
+                                        </td>
+                                        <td style="width: 100px;">
+                                            <a href="{{route('dry.order.manage.show',$orderData->id)}}" class="btn btn-primary btn-sm">Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex">
+                                <h4 class="page-title">Wash Order!</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Customer</th>
+                                    <th>Invoice</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $key=>$orderData)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>
+                                            {{$orderData->user->name}}<br>
+                                            {{$orderData->user->phone}}<br>
+                                            {{$orderData->user->email}}
+                                        </td>
+                                        <td>
+                                            {{$orderData->invoice_number}}
+                                        </td>
+                                        <td>
+                                            {{$orderData->order_date}}
+                                        </td>
+                                        <td>
+                                            {{$orderData->total_amount}}
+                                        </td>
+                                        <td>
+                                            @if($orderData->status == 'pending')
+                                                <span class="badge badge-outline-success">Pending</span>
+                                            @elseif($orderData->status == 'completed')
+                                                <span class="badge badge-outline-info">Completed</span>
+                                            @elseif($orderData->status == 'decline')
+                                                <span class="badge badge-danger">Decline</span>
+                                            @endif
+
+                                        </td>
+                                        <td style="width: 100px;">
+                                            <a href="{{route('order.manage.show',$orderData->id)}}" class="btn btn-primary btn-sm">Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </dic>
+
+
+
+
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
