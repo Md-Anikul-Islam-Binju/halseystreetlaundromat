@@ -80,6 +80,7 @@
                                         <th>#</th>
                                         <th>Item</th>
                                         <th>Quantity</th>
+                                        <th>is Crease </th>
                                         <th>Price</th>
                                         <th>Total</th>
                                     </tr>
@@ -93,6 +94,9 @@
                                             </td>
                                             <td>
                                                 {{ $item->quantity }}
+                                            </td>
+                                            <td class="{{ $item->is_crease == 1 ? 'text-success' : 'text-danger' }}">
+                                                {{ $item->is_crease == 1 ? 'Yes' : 'Not Need' }}
                                             </td>
                                             <td>
                                                 {{ $item->price }}

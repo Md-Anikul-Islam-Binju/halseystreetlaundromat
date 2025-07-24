@@ -113,6 +113,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Quantity</th>
+                            <th>is Crease </th>
                             <th>Price</th>
                             <th>Total</th>
                         </tr>
@@ -122,6 +123,9 @@
                             <tr>
                                 <td>{{$item->service->title}}</td>
                                 <td>{{ $item->quantity }}</td>
+                                <td class="{{ $item->is_crease == 1 ? 'text-success' : 'text-danger' }}">
+                                    {{ $item->is_crease == 1 ? 'Yes' : 'Not Need' }}
+                                </td>
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->total_price }}</td>
                             </tr>

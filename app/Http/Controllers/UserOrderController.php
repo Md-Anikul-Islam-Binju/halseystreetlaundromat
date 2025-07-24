@@ -79,6 +79,7 @@ class UserOrderController extends Controller
                     'quantity' => $quantity,
                     'price' => $service->price,
                     'total_price' => $itemTotal,
+                    'is_crease' => isset($request->crease[$serviceId]) ? 1 : 0,
                 ];
             }
         }

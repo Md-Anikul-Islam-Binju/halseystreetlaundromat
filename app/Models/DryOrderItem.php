@@ -10,6 +10,7 @@ class DryOrderItem extends Model
     use HasFactory;
     protected $fillable = [
         'dry_order_id',
+        'is_crease',
         'service_id',
         'quantity',
         'price',

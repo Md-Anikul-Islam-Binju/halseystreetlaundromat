@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('dry_order_id');
             $table->unsignedBigInteger('service_id');
+            $table->integer('is_crease')->default(0);
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->decimal('total_price', 10, 2);

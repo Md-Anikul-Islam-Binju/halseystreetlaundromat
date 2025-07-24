@@ -89,7 +89,7 @@
                             <td style="width: 100px;">
                                 <a href="{{route('dry.order.invoice',$orderData->id)}}" class="btn btn-info btn-sm">Invoice</a>
                                 <a href="{{route('dry.order.manage.show',$orderData->id)}}" class="btn btn-primary btn-sm">Details</a>
-                                <a href="{{route('dry.order.destroy',$orderData->id)}}"class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#danger-header-modal{{$orderData->id}}">Delete</a>
+{{--                                <a href="{{route('dry.order.destroy',$orderData->id)}}"class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#danger-header-modal{{$orderData->id}}">Delete</a>--}}
                             </td>
                         </tr>
 
