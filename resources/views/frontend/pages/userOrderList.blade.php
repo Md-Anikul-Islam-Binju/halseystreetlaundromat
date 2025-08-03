@@ -43,12 +43,18 @@
 
                                     <div class="col-12 col-lg-2 data-label" data-bs-label="Total Price">{{$orderData->total_amount }}$USD</div>
                                     <div class="col-12 col-lg-1 data-label" data-bs-label="Status">
-                                        @if($orderData->status == 'pending')
-                                            <span class="">Pending</span>
-                                        @elseif($orderData->status == 'completed')
-                                            <span class="">Completed</span>
-                                        @elseif($orderData->status == 'decline')
-                                            <span class="">Decline</span>
+                                        @if($orderData->status == 'Pending')
+                                            <span class=" badge-outline-primary">Pending</span>
+                                        @elseif($orderData->status == 'Order Accepted')
+                                            <span class=" badge-outline-info">Order Accepted</span>
+                                        @elseif($orderData->status == 'In process')
+                                            <span class=" badge-outline-warning">In process</span>
+                                        @elseif($orderData->status == 'Wait for deliver')
+                                            <span class=" badge-outline-secondary">Wait for deliver</span>
+                                        @elseif($orderData->status == 'Completed')
+                                            <span class=" badge-outline-success">Completed</span>
+                                        @elseif($orderData->status == 'Canceled')
+                                            <span class=" badge-outline-danger">Canceled</span>
                                         @endif
                                     </div>
                                     <div class="col-12 col-lg-1 data-label" data-bs-label="Invoice"><a
@@ -87,12 +93,18 @@
 
                                     <div class="col-12 col-lg-2 data-label" data-bs-label="Total Price">{{$orderData->total_amount + $orderData->payment->delivery_charge??0 }}$USD</div>
                                     <div class="col-12 col-lg-1 data-label" data-bs-label="Status">
-                                        @if($orderData->status == 'pending')
-                                            <span class="">Pending</span>
-                                        @elseif($orderData->status == 'completed')
-                                            <span class="">Completed</span>
-                                        @elseif($orderData->status == 'decline')
-                                            <span class="">Decline</span>
+                                        @if($orderData->status == 'Pending')
+                                            <span class=" badge-outline-primary">Pending</span>
+                                        @elseif($orderData->status == 'Order Accepted')
+                                            <span class=" badge-outline-info">Order Accepted</span>
+                                        @elseif($orderData->status == 'In process')
+                                            <span class=" badge-outline-warning">In process</span>
+                                        @elseif($orderData->status == 'Wait for deliver')
+                                            <span class=" badge-outline-secondary">Wait for deliver</span>
+                                        @elseif($orderData->status == 'Completed')
+                                            <span class=" badge-outline-success">Completed</span>
+                                        @elseif($orderData->status == 'Canceled')
+                                            <span class=" badge-outline-danger">Canceled</span>
                                         @endif
                                     </div>
                                     <div class="col-12 col-lg-1 data-label" data-bs-label="Invoice"><a

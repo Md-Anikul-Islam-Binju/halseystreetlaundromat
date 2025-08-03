@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\IncomeExpenseReportController;
 use App\Http\Controllers\admin\OrderManageController;
 use App\Http\Controllers\admin\ServiceController;
@@ -48,6 +49,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.store');
         Route::put('/slider-update/{id}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/slider-delete/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
+
+
+        //Coupon Section
+        Route::get('/coupon-section', [CouponController::class, 'index'])->name('coupon.section');
+        Route::post('/coupon-store', [CouponController::class, 'store'])->name('coupon.store');
+        Route::put('/coupon-update/{id}', [CouponController::class, 'update'])->name('coupon.update');
+        Route::get('/coupon-delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
 
         //Category Section
         Route::get('/category-section', [CategoryController::class, 'index'])->name('category.section');

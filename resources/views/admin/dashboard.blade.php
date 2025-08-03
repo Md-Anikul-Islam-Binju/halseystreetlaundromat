@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                            <table  class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                 <tr>
                                     <th>S/N</th>
@@ -93,6 +93,7 @@
                                         <td>
                                             {{$orderData->user->name}}<br>
                                             {{$orderData->user->phone}}<br>
+                                            {{$orderData->user->email}}<br>
                                         </td>
                                         <td>
                                             {{$orderData->invoice_number}}
@@ -104,12 +105,18 @@
                                             {{$orderData->total_amount + $orderData->payment->delivery_charge??0}}
                                         </td>
                                         <td>
-                                            @if($orderData->status == 'pending')
-                                                <span class="badge badge-outline-success">Pending</span>
-                                            @elseif($orderData->status == 'completed')
-                                                <span class="badge badge-outline-info">Completed</span>
-                                            @elseif($orderData->status == 'decline')
-                                                <span class="badge badge-danger">Decline</span>
+                                            @if($orderData->status == 'Pending')
+                                                <span class="badge badge-outline-primary">Pending</span>
+                                            @elseif($orderData->status == 'Order Accepted')
+                                                <span class="badge badge-outline-info">Order Accepted</span>
+                                            @elseif($orderData->status == 'In process')
+                                                <span class="badge badge-outline-warning">In process</span>
+                                            @elseif($orderData->status == 'Wait for deliver')
+                                                <span class="badge badge-outline-secondary">Wait for deliver</span>
+                                            @elseif($orderData->status == 'Completed')
+                                                <span class="badge badge-outline-success">Completed</span>
+                                            @elseif($orderData->status == 'Canceled')
+                                                <span class="badge badge-outline-danger">Canceled</span>
                                             @endif
 
                                         </td>
@@ -132,7 +139,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                            <table class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                 <tr>
                                     <th>S/N</th>
@@ -163,14 +170,19 @@
                                             {{$orderData->total_amount}}
                                         </td>
                                         <td>
-                                            @if($orderData->status == 'pending')
-                                                <span class="badge badge-outline-success">Pending</span>
-                                            @elseif($orderData->status == 'completed')
-                                                <span class="badge badge-outline-info">Completed</span>
-                                            @elseif($orderData->status == 'decline')
-                                                <span class="badge badge-danger">Decline</span>
+                                            @if($orderData->status == 'Pending')
+                                                <span class="badge badge-outline-primary">Pending</span>
+                                            @elseif($orderData->status == 'Order Accepted')
+                                                <span class="badge badge-outline-info">Order Accepted</span>
+                                            @elseif($orderData->status == 'In process')
+                                                <span class="badge badge-outline-warning">In process</span>
+                                            @elseif($orderData->status == 'Wait for deliver')
+                                                <span class="badge badge-outline-secondary">Wait for deliver</span>
+                                            @elseif($orderData->status == 'Completed')
+                                                <span class="badge badge-outline-success">Completed</span>
+                                            @elseif($orderData->status == 'Canceled')
+                                                <span class="badge badge-outline-danger">Canceled</span>
                                             @endif
-
                                         </td>
                                         <td style="width: 100px;">
                                             <a href="{{route('order.manage.show',$orderData->id)}}" class="btn btn-primary btn-sm">Details</a>

@@ -42,9 +42,12 @@
                                                 <div class="mb-3">
                                                     <label for="example-select" class="form-label">Status</label>
                                                     <select name="status" class="form-select">
-                                                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                                                        <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Completed</option>
-                                                        <option value="canceled" {{ $order->status === 'canceled' ? 'selected' : '' }}>Canceled</option>
+                                                        <option value="Pending" {{ $order->status === 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                        <option value="Order Accepted" {{ $order->status === 'Order Accepted' ? 'selected' : '' }}>Order Accepted</option>
+                                                        <option value="In process" {{ $order->status === 'In process' ? 'selected' : '' }}>In process</option>
+                                                        <option value="Wait for deliver" {{ $order->status === 'Wait for deliver' ? 'selected' : '' }}>Wait for deliver</option>
+                                                        <option value="Completed" {{ $order->status === 'Completed' ? 'selected' : '' }}>Completed</option>
+                                                        <option value="Canceled" {{ $order->status === 'Canceled' ? 'selected' : '' }}>Canceled</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -64,14 +67,18 @@
                     <p><strong>Email:</strong> {{ $order->user->email }}</p>
                     <p><strong>Phone:</strong> {{ $order->user->phone }}</p>
                     <p><strong>Order Status:</strong>
-                        @if($order->status == 'pending')
+                        @if($order->status == 'Pending')
                             <span class="badge badge-outline-primary">Pending</span>
-                        @elseif($order->status == 'completed')
-                            <span class="badge badge-outline-info">Completed</span>
-                        @elseif($order->status == 'canceled')
-                            <span class="badge badge-danger">Canceled</span>
-                        @else
-                            <span class="badge badge-secondary">Unknown</span>
+                        @elseif($order->status == 'Order Accepted')
+                            <span class="badge badge-outline-info">Order Accepted</span>
+                        @elseif($order->status == 'In process')
+                            <span class="badge badge-outline-warning">In process</span>
+                        @elseif($order->status == 'Wait for deliver')
+                            <span class="badge badge-outline-secondary">Wait for deliver</span>
+                        @elseif($order->status == 'Completed')
+                            <span class="badge badge-outline-success">Completed</span>
+                        @elseif($order->status == 'Canceled')
+                            <span class="badge badge-outline-danger">Canceled</span>
                         @endif
                     </p>
 

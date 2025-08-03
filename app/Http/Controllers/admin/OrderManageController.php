@@ -55,18 +55,18 @@ class OrderManageController extends Controller
         return view('admin.pages.order.show', compact('order'));
     }
 
-    public function changeStatus($id)
+    public function changeStatus(Request $request, $id)
     {
-        $order = Order::find($id);
-        if ($order->status == 'pending') {
-            $order->status = 'completed';
-            $order->save();
-            Toastr::success('Order Status Updated Successfully', 'Success');
-        } else {
-            $order->status = 'pending';
-            $order->save();
-            Toastr::success('Order Status Updated Successfully', 'Success');
-        }
+        $order = Order::findOrFail($id); // better to use findOrFail
+
+        $validated = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $order->status = $validated['status'];
+        $order->save();
+
+        Toastr::success('Order status updated successfully', 'Success');
         return redirect()->back();
     }
 
@@ -120,20 +120,24 @@ class OrderManageController extends Controller
         return view('admin.pages.order.dryOrderShow', compact('order'));
     }
 
-    public function dryOrderChangeStatus($id)
+
+    public function dryOrderChangeStatus(Request $request, $id)
     {
-        $order = DryOrder::find($id);
-        if ($order->status == 'pending') {
-            $order->status = 'completed';
-            $order->save();
-            Toastr::success('Dry Order Status Updated Successfully', 'Success');
-        } else {
-            $order->status = 'pending';
-            $order->save();
-            Toastr::success('Dry rder Status Updated Successfully', 'Success');
-        }
+        $order = DryOrder::findOrFail($id); // better to use findOrFail
+
+        $validated = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $order->status = $validated['status'];
+        $order->save();
+
+        Toastr::success('Dry Order status updated successfully', 'Success');
         return redirect()->back();
     }
+
+
+
 
     public function dryOrderDestroy($id)
     {

@@ -23,8 +23,8 @@ class AdminDashboardController extends Controller
        $loginLog = LoginLog::orderBy('last_login','desc')->limit(10)->get();
 
        //Dry Order
-       $dryOrders = DryOrder::with('user', 'dryOrderItems')->where('status','=','pending')->latest()->get();
-       $orders = Order::with('user', 'orderItems')->where('status','=','pending')->latest()->get();
+       $dryOrders = DryOrder::with('user', 'dryOrderItems')->where('status','=','Pending')->latest()->get();
+       $orders = Order::with('user', 'orderItems')->where('status','=','Pending')->latest()->get();
        return view('admin.dashboard', compact('loginLog', 'dryOrders' ,'orders' ));
     }
 

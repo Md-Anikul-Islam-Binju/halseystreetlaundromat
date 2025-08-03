@@ -28,8 +28,7 @@ return new class extends Migration
             $table->string('coverage_type')->nullable();
             $table->date('order_date')->default(now());
             $table->decimal('total_amount', 10, 2);
-
-            $table->enum('status', ['pending', 'completed', 'canceled'])->default('pending');
+            $table->enum('status', ['Pending', 'Order Accepted','In process','Wait for deliver', 'Completed', 'Canceled'])->default('Pending');
             $table->timestamps();
         });
     }

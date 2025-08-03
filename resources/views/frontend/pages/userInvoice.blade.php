@@ -35,12 +35,18 @@
                                     <div class="mt-3 float-sm-end">
                                         <p class="small"><strong>Order Date: </strong> &nbsp;&nbsp;&nbsp; {{  Carbon\Carbon::parse($order->order_date)->format('d M Y') }}</p>
                                         <p class="small"><strong>Order Status: </strong> <span class="badge bg-success ms-1">
-                                                @if($order->status == 'pending')
-                                                    <span >Pending</span>
-                                                @elseif($order->status == 'completed')
-                                                    <span >Completed</span>
-                                                @elseif($order->status == 'canceled')
-                                                    <span >Canceled</span>
+                                                @if($order->status == 'Pending')
+                                                    <span class=" badge-outline-primary">Pending</span>
+                                                @elseif($order->status == 'Order Accepted')
+                                                    <span class=" badge-outline-info">Order Accepted</span>
+                                                @elseif($order->status == 'In process')
+                                                    <span class=" badge-outline-warning">In process</span>
+                                                @elseif($order->status == 'Wait for deliver')
+                                                    <span class=" badge-outline-secondary">Wait for deliver</span>
+                                                @elseif($order->status == 'Completed')
+                                                    <span class=" badge-outline-success">Completed</span>
+                                                @elseif($order->status == 'Canceled')
+                                                    <span class=" badge-outline-danger">Canceled</span>
                                                 @endif
                                             </span></p>
                                         <p class="small"><strong>Invoice : </strong> <span class="float-end">#{{$order->invoice_number }}</span></p>

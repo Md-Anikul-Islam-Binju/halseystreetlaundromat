@@ -32,6 +32,15 @@ class PermissionTableSeeder extends Seeder
             'user-edit',
             'user-delete',
 
+
+            //For Coupon
+            'coupon-list',
+            'coupon-create',
+            'coupon-edit',
+            'coupon-delete',
+
+
+
             //For Slider
             'slider-list',
             'slider-create',

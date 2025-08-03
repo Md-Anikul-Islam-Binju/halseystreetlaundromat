@@ -120,8 +120,14 @@
                 </li>
                 @endcan
 
-
-
+                @can('coupon-list')
+                    <li class="side-nav-item">
+                        <a href="{{route('coupon.section')}}" class="side-nav-link">
+                            <i class="ri-slideshow-line"></i>
+                            <span> Coupon </span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('order-manage')
                     <li class="side-nav-item">

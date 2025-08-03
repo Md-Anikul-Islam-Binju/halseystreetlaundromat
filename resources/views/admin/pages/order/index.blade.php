@@ -77,14 +77,19 @@
                                 {{$orderData->total_amount}}
                             </td>
                             <td>
-                                @if($orderData->status == 'pending')
-                                    <span class="badge badge-outline-success">Pending</span>
-                                @elseif($orderData->status == 'completed')
-                                    <span class="badge badge-outline-info">Completed</span>
-                                @elseif($orderData->status == 'decline')
-                                    <span class="badge badge-danger">Decline</span>
+                                @if($orderData->status == 'Pending')
+                                    <span class="badge badge-outline-primary">Pending</span>
+                                @elseif($orderData->status == 'Order Accepted')
+                                    <span class="badge badge-outline-info">Order Accepted</span>
+                                @elseif($orderData->status == 'In process')
+                                    <span class="badge badge-outline-warning">In process</span>
+                                @elseif($orderData->status == 'Wait for deliver')
+                                    <span class="badge badge-outline-secondary">Wait for deliver</span>
+                                @elseif($orderData->status == 'Completed')
+                                    <span class="badge badge-outline-success">Completed</span>
+                                @elseif($orderData->status == 'Canceled')
+                                    <span class="badge badge-outline-danger">Canceled</span>
                                 @endif
-
                             </td>
                             <td style="width: 100px;">
                                 <a href="{{route('order.invoice',$orderData->id)}}" class="btn btn-info btn-sm">Invoice</a>
