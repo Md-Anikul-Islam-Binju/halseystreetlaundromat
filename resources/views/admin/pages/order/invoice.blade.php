@@ -46,13 +46,7 @@
                             <div class="mt-3 float-sm-end">
                                 <p class="fs-13"><strong>Order Date: </strong> &nbsp;&nbsp;&nbsp; {{  Carbon\Carbon::parse($order->order_date)->format('d M Y') }}</p>
                                 <p class="fs-13"><strong>Order Status: </strong> <span class="badge bg-success ">
-{{--                                        @if($order->status == 'pending')--}}
-{{--                                            <span >Pending</span>--}}
-{{--                                        @elseif($order->status == 'completed')--}}
-{{--                                            <span >Completed</span>--}}
-{{--                                        @elseif($order->status == 'canceled')--}}
-{{--                                            <span >Canceled</span>--}}
-{{--                                        @endif--}}
+
 
                                             @if($order->status == 'Pending')
                                                 <span class=" badge-outline-primary">Pending</span>
@@ -126,6 +120,17 @@
                         <div class="col-sm-6">
                             <div class="float-end mt-3 mt-sm-0">
                                 <div class="float-end mt-3 mt-sm-0">
+
+
+                                    @if($order->coupon_id!=null)
+                                    @php
+                                        $coupon = \App\Models\Coupon::find($order->coupon_id);
+                                    @endphp
+                                        <h5>Actual Laundry Cost : ${{ number_format($order->payment->total_amount, 2) - number_format($order->payment->delivery_charge, 2) + number_format($coupon->discount_amount, 2) }} USD</h5>
+                                        <h5>Laundry Cost Discount: ${{ number_format($coupon->discount_amount, 2) }} USD</h5>
+                                    @else
+                                    @endif
+
                                     <h5>Laundry Cost : ${{ number_format($order->payment->total_amount, 2) - number_format($order->payment->delivery_charge, 2) }} USD</h5>
                                     <h5>Delivery Charge : ${{ number_format($order->payment->delivery_charge, 2) }} USD</h5>
                                     <h4>Total : ${{ number_format($order->payment->total_amount, 2) }} USD</h4>

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('invoice_number')->unique();
             $table->date('order_date')->default(now());
             $table->decimal('total_amount', 10, 2)->nullable();
+            $table->integer('coupon_id')->nullable();
             $table->enum('status', ['Pending', 'Order Accepted','In process','Wait for deliver', 'Completed', 'Canceled'])->default('Pending');
             $table->timestamps();
         });

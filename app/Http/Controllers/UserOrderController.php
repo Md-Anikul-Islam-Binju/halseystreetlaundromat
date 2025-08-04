@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\DryOrder;
 use App\Models\DryOrderItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -159,6 +161,8 @@ class UserOrderController extends Controller
     }
     public function orderStore(Request $request)
     {
+        //dd($request->all());
+
         // Validate request data
         $request->validate([
             'address' => 'required|string',
@@ -166,6 +170,7 @@ class UserOrderController extends Controller
             'delivery_speed_type' => 'required|string',
             'detergent_type' => 'required|string',
             'coverage_type' => 'required|string',
+            'coupon_code' => 'nullable|string',
         ]);
         // Define delivery charge based on delivery speed type
         if ($request->delivery_speed_type == 'Standard') {
@@ -190,6 +195,50 @@ class UserOrderController extends Controller
         }
         // Add the delivery charge to the total amount
         $total_amount += $delivery_charge;
+
+        $coupon = null;
+        $coupon_id = null;
+        $discount_amount = 0;
+
+        // ✅ COUPON VALIDATION BLOCK
+        if ($request->filled('coupon_code')) {
+            $coupon = Coupon::where('coupon_code', $request->coupon_code)
+                ->where('status', 1)
+                ->first();
+
+            if (!$coupon) {
+                return back()->with('error', 'Invalid or inactive coupon code.');
+            }
+
+            $now = Carbon::now();
+
+            if ($coupon->start_date && $now->lt(Carbon::parse($coupon->start_date))) {
+                return back()->with('error', 'This coupon is not active yet.');
+            }
+
+            if ($coupon->end_date && $now->gt(Carbon::parse($coupon->end_date))) {
+                return back()->with('error', 'This coupon has expired.');
+            }
+
+            if ($coupon->amount_spend && $total_amount < $coupon->amount_spend) {
+                return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
+            }
+
+            // Usage limit validation (per user, optional)
+            $usedCount = Order::where('customer_id', Auth::id())
+                ->where('coupon_id', $coupon->id)
+                ->count();
+
+            if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
+                return back()->with('error', "You have already used this coupon the maximum allowed times.");
+            }
+
+            // Apply discount
+            $discount_amount = $coupon->discount_amount;
+            $total_amount -= $discount_amount;
+            $coupon_id = $coupon->id;
+        }
+
         // Create a new order
         $order = Order::create([
             'customer_id' => Auth::id(), // Use Auth to get the logged-in user's id
@@ -207,6 +256,7 @@ class UserOrderController extends Controller
             'order_date' => now(),
             'invoice_number' => strtoupper(uniqid('INV-')),
             'total_amount' => $total_amount,
+            'coupon_id' => $coupon_id,
             'status' => 'pending',
         ]);
 

@@ -26,6 +26,7 @@ class Order extends Model
         'invoice_number',
         'order_date',
         'total_amount',
+        'coupon_id',
         'status',
 
     ];
