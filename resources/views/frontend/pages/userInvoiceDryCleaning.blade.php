@@ -119,6 +119,14 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="float-end mt-3 mt-sm-0">
+                                        @if($order->coupon_id!=null)
+                                            @php
+                                                $coupon = \App\Models\Coupon::find($order->coupon_id);
+                                            @endphp
+                                            <h5>Actual Laundry Cost : ${{ number_format($order->payment->total_amount, 2) - number_format($order->payment->delivery_charge, 2) + number_format($coupon->discount_amount, 2) }} USD</h5>
+                                            <h5>Laundry Cost Discount: ${{ number_format($coupon->discount_amount, 2) }} USD</h5>
+                                        @else
+                                        @endif
                                         <h5>Laundry Cost : ${{ number_format($order->payment->total_amount, 2) }} USD</h5>
                                         <h5>Delivery Charge : ${{ number_format($order->payment->delivery_charge, 2) }} USD</h5>
                                         <h3>Total : ${{ number_format($order->payment->total_amount, 2) + number_format($order->payment->delivery_charge, 2) }} USD</h3>

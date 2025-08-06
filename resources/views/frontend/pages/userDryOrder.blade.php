@@ -282,6 +282,18 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" value="1" id="has_coupon_checkbox">
+                                                <label class="form-check-label" for="has_coupon_checkbox">
+                                                    Have a coupon?
+                                                </label>
+                                            </div>
+
+                                            <div class="mb-3" id="coupon_input_group" style="display: none;">
+                                                <input type="text" class="form-control app-input" name="coupon_code" id="coupon_code" placeholder="Enter coupon code">
+                                            </div>
+
+
                                             <p class="text-muted small mb-3">
                                                 By providing your card information, you allow Halsey Street Laundromat to
                                                 charge your card
@@ -316,4 +328,16 @@
         <script src="https://js.stripe.com/v3/"></script>
         <script src="{{asset('frontend/js/stripe.js') }}"></script>
     @endsection
+
+    <script>
+        document.getElementById('has_coupon_checkbox').addEventListener('change', function () {
+            const couponInput = document.getElementById('coupon_input_group');
+            if (this.checked) {
+                couponInput.style.display = 'block';
+            } else {
+                couponInput.style.display = 'none';
+                document.getElementById('coupon_code').value = '';
+            }
+        });
+    </script>
 @endsection

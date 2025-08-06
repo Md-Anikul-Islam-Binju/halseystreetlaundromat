@@ -86,6 +86,48 @@ class UserOrderController extends Controller
             }
         }
 
+        $coupon = null;
+        $coupon_id = null;
+        $discount_amount = 0;
+
+        if ($request->filled('coupon_code')) {
+            $coupon = Coupon::where('coupon_code', $request->coupon_code)
+                ->where('status', 1)
+                ->first();
+
+            if (!$coupon) {
+                return back()->with('error', 'Invalid or inactive coupon code.');
+            }
+
+            $now = Carbon::now();
+
+            if ($coupon->start_date && $now->lt(Carbon::parse($coupon->start_date))) {
+                return back()->with('error', 'This coupon is not active yet.');
+            }
+
+            if ($coupon->end_date && $now->gt(Carbon::parse($coupon->end_date))) {
+                return back()->with('error', 'This coupon has expired.');
+            }
+
+            if ($coupon->amount_spend && $totalAmount < $coupon->amount_spend) {
+                return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
+            }
+
+            $usedCount = DryOrder::where('customer_id', auth()->id())
+                ->where('coupon_id', $coupon->id)
+                ->count();
+
+            if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
+                return back()->with('error', "You have already used this coupon the maximum allowed times.");
+            }
+
+            // Apply discount
+            $discount_amount = $coupon->discount_amount;
+            $totalAmount -= $discount_amount;
+            $coupon_id = $coupon->id;
+        }
+
+
         // Create the order
         $order = DryOrder::create([
             'customer_id' => auth()->id(),
@@ -109,6 +151,7 @@ class UserOrderController extends Controller
 
 
             'coverage_type' => $request->coverage_type,
+            'coupon_id' => $coupon_id,
 
         ]);
 

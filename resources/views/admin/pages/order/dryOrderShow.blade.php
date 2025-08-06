@@ -149,7 +149,22 @@
                     <p><strong>Payment Status:</strong> {{ ucfirst($order->payment->status) }}</p>
                     <p><strong>Payment Date:</strong> {{ $order->payment->payment_date }}</p>
                     <p><strong>Delivery Charge:</strong> ${{ number_format($order->payment->delivery_charge, 2) }}</p>
-                    <p><strong>Laundry Cost:</strong> ${{ number_format($order->payment->total_amount, 2) }}</p>
+{{--                    <p><strong>Laundry Cost:</strong> ${{ number_format($order->payment->total_amount, 2) }}</p>--}}
+
+                    @if($order->coupon_id!=null)
+                        <p>
+                            @php
+                                $coupon = \App\Models\Coupon::find($order->coupon_id);
+                            @endphp
+                            <strong>Laundry Cost with out Coupon:</strong>
+                            ${{ number_format($order->payment->total_amount, 2) + number_format($coupon->discount_amount, 2) }}<br>
+
+                            <strong>Laundry Cost Discount:</strong>
+                            ${{ number_format($coupon->discount_amount, 2) }}
+                        </p>
+                    @else
+                        <p><strong>Laundry Cost:</strong> ${{ number_format($order->payment->total_amount, 2) - number_format($order->payment->delivery_charge, 2) }}</p>
+                    @endif
                     <p><strong>Total amount:</strong> ${{ number_format($order->payment->total_amount, 2) + number_format($order->payment->delivery_charge, 2) }}</p>
                 </div>
             </div>
