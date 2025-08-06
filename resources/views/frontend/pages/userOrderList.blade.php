@@ -4,9 +4,15 @@
     <body class="section-bg">
        <div class="container">
          <div class="d-flex align-items-center justify-content-center min-vh-100 w-100 ">
-            <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100 p-4 border rounded-5 shadow-sm bg-white">
+
+             <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100 p-4 border rounded-5 shadow-sm bg-white">
                 <br>   <br>
-                <h1 class="text-center fw-bold my-4">Your Order List</h1>
+
+                 <div class="d-flex justify-content-between align-items-center w-100">
+                     <a class="btn btn-secondary" href="{{ route('user.order.decision') }}">Order Now</a>
+                     <h1 class="text-center fw-bold flex-grow-1 m-0 text-center">Your Order List</h1>
+                     <div style="width: 120px;"></div> <!-- Spacer to balance the button -->
+                 </div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-wash-tab" data-bs-toggle="pill" data-bs-target="#pills-wash"
@@ -16,10 +22,13 @@
                         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-dry-cleaning"
                             type="button" role="tab" aria-controls="pills-dry-cleaning" aria-selected="false">Dry Cleaning</button>
                     </li>
+
                 </ul>
 
 
+
                 <div class="tab-content w-100" id="pills-tabContent">
+
 
                     @if($order->isNotEmpty())
                     <div class="tab-pane fade show active w-100" id="pills-wash" role="tabpanel" aria-labelledby="pills-wash-tab" tabindex="0">

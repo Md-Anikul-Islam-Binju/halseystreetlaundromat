@@ -43,13 +43,13 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="text-black fw-medium">Your Laundry Pro will ONLY see these details after accepting your order.</p>
+                                                <p class="text-black fw-medium">Your Halsey Street Laundromat will ONLY see these details after accepting your order.</p>
                                                 <ul class="list-unstyled ms-3">
                                                     <li>Building access details</li>
                                                     <li>Gate codes</li>
                                                     <li>How laundry can be found</li>
                                                 </ul>
-                                                <p class="text-black mt-2">For requests related to pickup or delivery timing, please message your Laundry Pro</p>
+                                                <p class="text-black mt-2">For requests related to pickup or delivery timing, please message your Halsey Street Laundromat</p>
                                             </div>
                                         </div>
                                     </div>
@@ -161,10 +161,31 @@
                             <div class="w-100" >
                                 <h6 class="mb-2">Check all that apply</h6>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="is_delicate_cycle" type="checkbox" value="1" id="cycle">
-                                    <label class="form-check-label" for="cycle">
+{{--                                    <input class="form-check-input" name="is_delicate_cycle" type="checkbox" value="1" id="cycle">--}}
+{{--                                    <label class="form-check-label" for="cycle">--}}
+{{--                                        Delicate cycle--}}
+{{--                                    </label>--}}
+
+                                    <input class="form-check-input" name="is_delicate_cycle" type="checkbox" value="1" id="delicate_cycle" data-bs-toggle="modal" data-bs-target="#delicate_cycle_modal" aria-controls="delicate_cycle_modal">
+                                    <label class="form-check-label" for="delicate_cycle">
                                         Delicate cycle
                                     </label>
+                                    <div class="modal fade" id="delicate_cycle_modal" data-bs-keyboard="false" tabindex="-1"
+                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Instructions for  Delicate cycle</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-black" style="font-size: small;">
+                                                        Place your delicate items in separate bag labeled Delicate.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="is_hang_dry" type="checkbox" value="1" id="hang_dry" data-bs-toggle="modal" data-bs-target="#hang_dry_modal" aria-controls="hang_dry_modal">
@@ -196,14 +217,14 @@
                                 <div class="form-check">
                                     <div class="d-flex align-items-center justify-content-between gap-3 w-100">
                                         <div>
-                                            <input class="form-check-input" name="is_additional_request" type="checkbox" value="1" id="additional_rqst">
+                                            <input class="form-check-input" name="is_additional_request" type="checkbox" value="1" id="additional_rqst" role="button" data-bs-toggle="modal" data-bs-target="#additional_request" aria-controls="additional_request">
                                             <label class="form-check-label" for="additional_rqst">
                                                 Additional Requests
                                             </label>
                                         </div>
-                                        <span class="instruction-icon" role="button" data-bs-toggle="modal" data-bs-target="#additional_request" aria-controls="additional_request">
-                                            <i class="fa-regular fa-circle-question fs-5"></i>
-                                        </span>
+{{--                                        <span class="instruction-icon" role="button" data-bs-toggle="modal" data-bs-target="#additional_request" aria-controls="additional_request">--}}
+{{--                                            <i class="fa-regular fa-circle-question fs-5"></i>--}}
+{{--                                        </span>--}}
                                         <div class="modal fade" id="additional_request" data-bs-keyboard="false"
                                              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -215,7 +236,7 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p class="text-black" style="font-size: small;">Laundry Pros
+                                                        <p class="text-black" style="font-size: small;">Halsey Street Laundromat
                                                             provide a wash-dry-fold service.</p>
                                                         <p class="text-black my-2" style="font-size: small;">They do not
                                                             look for stains, treat stains, or use any stain removal
@@ -313,7 +334,7 @@
                                     <div class="bag-info">
                                         <span class="bag-icon">👜</span>
                                         <div>
-                                            <div class="bag-text-title">O versized Items</div>
+                                            <div class="bag-text-title">Over sized Items</div>
                                         </div>
                                     </div>
                                     <div class="counter-wrapper">
@@ -335,13 +356,12 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="bagpopupLabel">Protecting Laundry Pros</h1>
+                                            <h1 class="modal-title fs-5" id="bagpopupLabel">Protecting Halsey Street Laundromat</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class="text-dark my-1">To ensure the health and safety of your Laundry
-                                                Pro, please certify that your laundry :</p>
+                                            <p class="text-dark my-1">To ensure the health and safety of your Halsey Street Laundromat, please certify that your laundry :</p>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="1"
                                                        id="biohazardous">

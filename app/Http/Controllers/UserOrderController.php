@@ -134,6 +134,36 @@ class UserOrderController extends Controller
                 'delivery_charge' => 0,
             ]);
         }
+
+//        if ($request->payment_method === 'Card') {
+//            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+//
+//            try {
+//                $charge = \Stripe\Charge::create([
+//                    'amount' => $totalAmount * 100, // in cents
+//                    'currency' => 'usd',
+//                    'source' => $request->stripe_token, // obtained via frontend Stripe.js
+//                    'description' => 'Dry Cleaning Order #' . $order->invoice_number,
+//                ]);
+//
+//                // Save payment in DB
+//                Payment::create([
+//                    'order_id' => $order->id,
+//                    'payment_method' => 'Card',
+//                    'payment_date' => now(),
+//                    'total_amount' => $totalAmount,
+//                    'status' => 'paid',
+//                    'order_type'=> 'dry',
+//                    'delivery_charge' => 0,
+//                    'stripe_charge_id' => $charge->id,
+//                ]);
+//            } catch (\Exception $e) {
+//                // Optionally delete the order if payment fails
+//                $order->delete();
+//                return back()->withErrors(['error' => 'Payment failed: ' . $e->getMessage()]);
+//            }
+//        }
+
         Toastr::success('Order Successfully', 'Success');
         return redirect()->route('user.thankyou');
     }

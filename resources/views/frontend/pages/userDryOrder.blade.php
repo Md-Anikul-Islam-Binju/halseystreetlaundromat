@@ -51,7 +51,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="text-black fw-medium">Your Laundry Pro will ONLY see these
+                                                    <p class="text-black fw-medium">Your Halsey Street Laundromat will ONLY see these
                                                         details after accepting
                                                         your order.</p>
                                                     <ul class="list-unstyled ms-3">
@@ -61,7 +61,7 @@
                                                     </ul>
                                                     <p class="text-black mt-2">For requests related to pickup or delivery
                                                         timing, please message
-                                                        your Laundry Pro</p>
+                                                        your Halsey Street Laundromat</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -124,6 +124,7 @@
                                                             </div>
                                                         </div>
                                                     </li>
+
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -136,7 +137,9 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <h4 id="total_price" class="fw-bold text-black mb-0">$0.00</h4>
                                 </div>
+
                             </div>
+                            <p class="text-end">Heavy soil laundry will increase by $5 per items</p>
                             <div class="w-100 d-flex align-items-center justify-content-between">
                                     <button type="button" class="app-prev-btn prev-btn">Previous</button>
                                     <button type="button" class="app-next-btn next-btn">Next</button>
@@ -236,13 +239,18 @@
                             <div class="d-flex flex-column justify-content-center align-items-center gap-3 w-100">
                                 <h3 class="text-start my-2 text-uppercase">Payment</h3>
                                 <div class="w-100">
-                                    <!-- Nav tabs -->
+
                                     <ul class="nav nav-tabs" id="paymentTab" role="tablist">
                                         <li class="nav-item w-100" role="presentation">
                                             <button class="nav-link active w-100" id="card-tab" data-bs-toggle="tab"
                                                 data-bs-target="#card" type="button" role="tab">Card</button>
                                         </li>
                                     </ul>
+
+{{--                                    <div id="card-element" class="form-control mb-3"></div>--}}
+{{--                                    <div id="card-errors" class="text-danger"></div>--}}
+{{--                                    <input type="hidden" name="stripe_token" id="stripe_token">--}}
+
 
                                     <input type="hidden" name="payment_method" id="payment_method" value="Card">
 
@@ -304,4 +312,8 @@
         </div>
     </section>
 
+    @section('scripts')
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="{{asset('frontend/js/stripe.js') }}"></script>
+    @endsection
 @endsection

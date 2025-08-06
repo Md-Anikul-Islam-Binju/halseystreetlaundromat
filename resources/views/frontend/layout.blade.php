@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="stripe-key" content="{{ config('services.stripe.key') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes" />
@@ -303,5 +304,7 @@
 <script src="{{asset('frontend/js/slick.min.js')}}"></script>
 <script src="{{asset('frontend/js/jquery.magnific-popup.js')}}"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
+
+
 </body>
 </html>
