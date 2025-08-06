@@ -33,4 +33,9 @@ class Payment extends Model
         return $this->belongsTo(DryOrder::class);
     }
 
+    protected $casts = [
+        'status' => 'string',
+        'payment_method' => 'string',
+    ];
+
 }

@@ -532,27 +532,43 @@
                                 <div class="tab-content mt-4">
                                     <!-- Card Form -->
                                     <div class="tab-pane fade show active" id="card" role="tabpanel">
-                                        <div class="position-relative w-100 mb-3">
-                                            <input type="text" class="app-input form-control" id="card_number" name="card_no"
-                                                   placeholder="Card number" maxlength="19">
-                                            <span class="app-input-icon"><i class="fa-solid fa-credit-card"></i></span>
+{{--                                        <div class="position-relative w-100 mb-3">--}}
+{{--                                            <input type="text" class="app-input form-control" id="card_number" name="card_no"--}}
+{{--                                                   placeholder="Card number" maxlength="19">--}}
+{{--                                            <span class="app-input-icon"><i class="fa-solid fa-credit-card"></i></span>--}}
+{{--                                        </div>--}}
+
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-6 mb-3">--}}
+{{--                                                <input type="text" class="form-control app-input" id="exp_date" name="card_exp_date"--}}
+{{--                                                       placeholder="MM/YY" maxlength="5">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-6 mb-3">--}}
+{{--                                                <input type="text" class="form-control app-input" placeholder="CVC" id="security_code" name="card_security_code" maxlength="3">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-12 mb-3">--}}
+{{--                                                <input type="text" class="form-control app-input" placeholder="ZIP code" id="zip_code" name="zip_code" maxlength="9">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+
+                                        <input type="hidden" name="stripeToken" id="stripe-token-id">
+
+                                        <div class="form-group mb-3">
+                                            <label class="text-black">Name on Card</label>
+                                            <input type="text" name="card_holder_name" class="form-control" placeholder="Card Holder Name" required>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <input type="text" class="form-control app-input" id="exp_date" name="card_exp_date"
-                                                       placeholder="MM/YY" maxlength="5">
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <input type="text" class="form-control app-input" placeholder="CVC" id="security_code" name="card_security_code" maxlength="3">
-                                            </div>
+                                        <div class="form-group mb-3">
+                                            <label class="text-black">Card Info</label>
+                                            <div id="card-element" class="form-control bg-white p-2 rounded"></div>
                                         </div>
+                                        <br>
 
-                                        <div class="row">
-                                            <div class="col-12 mb-3">
-                                                <input type="text" class="form-control app-input" placeholder="ZIP code" id="zip_code" name="zip_code" maxlength="9">
-                                            </div>
-                                        </div>
+
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="checkbox" value="1" id="has_coupon_checkbox">
                                             <label class="form-check-label" for="has_coupon_checkbox">
@@ -569,7 +585,10 @@
                                             for future payments in accordance with their terms.
                                         </p>
 
-                                        <button type="submit" class="payment-btn app-btn">Submit</button>
+{{--                                        <button  type="submit" onclick="createToken()" class="payment-btn app-btn">Submit</button>--}}
+                                        <button type="button" onclick="createToken()" id="pay-btn" class="payment-btn app-btn mt-3">
+                                            Submit Payment
+                                        </button>
                                     </div>
 
 
@@ -596,15 +615,46 @@
         </div>
     </div>
     </body>
-{{--    <script>--}}
-{{--        // When tab changes, update payment method--}}
-{{--        document.querySelectorAll('#paymentTab button').forEach(button => {--}}
-{{--            button.addEventListener('click', function () {--}}
-{{--                const paymentMethod = this.id === 'card-tab' ? 'Card' : 'Cash';--}}
-{{--                document.getElementById('payment_method').value = paymentMethod;--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Initialize Stripe
+        var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        function createToken() {
+            document.getElementById("pay-btn").disabled = true;
+
+            stripe.createToken(cardElement).then(function(result) {
+                if (result.error) {
+                    alert(result.error.message);
+                    document.getElementById("pay-btn").disabled = false;
+                } else {
+                    console.log("Stripe Token:", result.token.id); // DEBUG: See token in console
+                    document.getElementById("stripe-token-id").value = result.token.id;
+                    document.getElementById("order-form").submit();
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("order-form");
+            form.addEventListener("submit", function (e) {
+                const paymentMethod = document.getElementById("payment_method").value;
+                const tokenInput = document.getElementById("stripe-token-id").value;
+                if (paymentMethod === "Card" && tokenInput === '') {
+                    e.preventDefault();
+                    alert("Please wait while we process your payment.");
+                    return false;
+                }
+            });
+        });
+    </script>
+
+
     <script>
         document.getElementById('has_coupon_checkbox').addEventListener('change', function () {
             const couponInput = document.getElementById('coupon_input_group');

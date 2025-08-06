@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('delivery_charge', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->string('card_exp_date')->nullable();
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
+            $table->string('status')->nullable();
             $table->string('order_type');
             $table->timestamps();
         });
