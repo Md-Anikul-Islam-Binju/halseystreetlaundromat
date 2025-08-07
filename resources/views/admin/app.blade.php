@@ -86,7 +86,7 @@
     </div>
 
     <div class="leftside-menu">
-        <a href="{{route('dashboard')}}" class="logo logo-light">
+        <a href="{{url('admin/dashboard')}}" class="logo logo-light">
             @if (!empty($siteSetting->logo))
                 <span class="logo-lg">
                     <img src="{{ asset($siteSetting ? $siteSetting->logo : '') }}" alt="logo" style="height: 80px;">
