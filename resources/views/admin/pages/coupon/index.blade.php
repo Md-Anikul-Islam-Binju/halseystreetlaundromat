@@ -31,6 +31,7 @@
                     <thead>
                     <tr>
                         <th>S/N</th>
+                        <th>Coupon Type</th>
                         <th>Coupon Code</th>
                         <th>Discount Amount</th>
                         <th>Start Date</th>
@@ -45,8 +46,25 @@
                     @foreach($coupon as $key=>$couponData)
                         <tr>
                             <td>{{$key+1}}</td>
+                            <td>
+                                @if($couponData->coupon_type == 'percentage')
+                                    Percentage
+                                @elseif($couponData->coupon_type == 'fixed')
+                                    Fixed
+                                @else
+                                    N/A
+                                @endif
+                            </td>
                             <td>{{$couponData->coupon_code}}</td>
-                            <td>{{$couponData->discount_amount}}</td>
+                            <td>
+                                @if($couponData->coupon_type == 'percentage')
+                                    {{$couponData->discount_amount}}%
+                                @elseif($couponData->coupon_type == 'fixed')
+                                    ${{$couponData->discount_amount}}
+                                @else
+                                    N/A
+                                @endif
+                            </td>
                             <td>{{$couponData->start_date}}</td>
                             <td>{{$couponData->end_date}}</td>
                             <td>{{$couponData->use_limit}}</td>
@@ -75,6 +93,15 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label for="example-select" class="form-label">Coupon Type</label>
+                                                            <select name="coupon_type" class="form-select">
+                                                                <option value="percentage" {{ $couponData->status == 'percentage' ? 'selected' : '' }}>Percentage</option>
+                                                                <option value="fixed" {{ $couponData->status == 'fixed'? 'selected' : '' }}>Fixed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label for="coupon_code" class="form-label">Coupon Code</label>
@@ -173,6 +200,15 @@
                     <form method="post" action="{{route('coupon.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="example-select" class="form-label">Coupon Type</label>
+                                    <select name="coupon_type" class="form-select">
+                                        <option value="fixed">Fixed</option>
+                                        <option value="percentage">Percentage</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="coupon_code" class="form-label">Coupon Code</label>

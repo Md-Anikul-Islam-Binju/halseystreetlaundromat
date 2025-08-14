@@ -37,118 +37,6 @@ class UserOrderController extends Controller
         return view('frontend.pages.userDryOrder', compact('categories'));
     }
 
-//    public function userDryOrderStore(Request $request)
-//    {
-//        $validated = $request->validate([
-//            'items' => 'required|array',
-//            'payment_method' => 'required|string',
-//        ]);
-//        $totalAmount = 0;
-//        $orderItems = [];
-//        foreach ($request->items as $serviceId => $quantity) {
-//            if ($quantity > 0) {
-//                $service = Service::find($serviceId);
-//                $itemTotal = $service->price * $quantity;
-//                $totalAmount += $itemTotal;
-//
-//                $orderItems[] = [
-//                    'dry_order_id' => null, // Will be set after order creation
-//                    'service_id' => $serviceId,
-//                    'quantity' => $quantity,
-//                    'price' => $service->price,
-//                    'total_price' => $itemTotal,
-//                    'is_crease' => isset($request->crease[$serviceId]) ? 1 : 0,
-//                ];
-//            }
-//        }
-//
-//        $coupon = null;
-//        $coupon_id = null;
-//        $discount_amount = 0;
-//
-//        if ($request->filled('coupon_code')) {
-//            $coupon = Coupon::where('coupon_code', $request->coupon_code)
-//                ->where('status', 1)
-//                ->first();
-//
-//            if (!$coupon) {
-//                return back()->with('error', 'Invalid or inactive coupon code.');
-//            }
-//
-//            $now = Carbon::now();
-//
-//            if ($coupon->start_date && $now->lt(Carbon::parse($coupon->start_date))) {
-//                return back()->with('error', 'This coupon is not active yet.');
-//            }
-//
-//            if ($coupon->end_date && $now->gt(Carbon::parse($coupon->end_date))) {
-//                return back()->with('error', 'This coupon has expired.');
-//            }
-//
-//            if ($coupon->amount_spend && $totalAmount < $coupon->amount_spend) {
-//                return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
-//            }
-//
-//            $usedCount = DryOrder::where('customer_id', auth()->id())
-//                ->where('coupon_id', $coupon->id)
-//                ->count();
-//
-//            if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
-//                return back()->with('error', "You have already used this coupon the maximum allowed times.");
-//            }
-//
-//            // Apply discount
-//            $discount_amount = $coupon->discount_amount;
-//            $totalAmount -= $discount_amount;
-//            $coupon_id = $coupon->id;
-//        }
-//        // Create the order
-//        $order = DryOrder::create([
-//            'customer_id' => auth()->id(),
-//            'invoice_number' => 'DRY-' . time(),
-//            'order_date' => now(),
-//            'total_amount' => $totalAmount,
-//            'status' => 'pending',
-//            'address' => $request->address,
-//            'pic_spot' => $request->pic_spot,
-//            'instructions' => $request->instructions,
-//            'instructions_text' => $request->instructions_text,
-//            'delivery_speed_type' => 'Standard',
-//            'detergent_type' => $request->detergent_type?? 'Regular',
-//            'is_delicate_cycle' => $request->is_delicate_cycle ?? 0,
-//            'is_hang_dry' => $request->is_hang_dry ?? 0,
-//            'is_return_hanger' => $request->is_return_hanger ?? 0,
-//            'is_additional_request' => $request->is_additional_request ?? 0,
-//            'coverage_type' => $request->coverage_type,
-//            'coupon_id' => $coupon_id,
-//
-//        ]);
-//
-//        // Add order items
-//        foreach ($orderItems as &$item) {
-//            $item['dry_order_id'] = $order->id;
-//            DryOrderItem::create($item);
-//        }
-//        // Process payment
-//        if ($request->payment_method === 'Card') {
-//            Payment::create([
-//                'order_id' => $order->id,
-//                'payment_method' => 'Card',
-//                'card_no' => $request->card_no,
-//                'card_exp_date' => $request->card_exp_date,
-//                'card_security_code' => $request->card_security_code,
-//                'zip_code' => $request->zip_code,
-//                'payment_date' => now(),
-//                'total_amount' => $totalAmount,
-//                'status' => 'pending',
-//                'order_type'=> 'dry',
-//                'delivery_charge' => 0,
-//            ]);
-//        }
-//        Toastr::success('Order Successfully', 'Success');
-//        return redirect()->route('user.thankyou');
-//    }
-
 
     public function userDryOrderStore(Request $request)
     {
@@ -182,6 +70,42 @@ class UserOrderController extends Controller
         $coupon_id = null;
         $discount_amount = 0;
 
+//        if ($request->filled('coupon_code')) {
+//            $coupon = Coupon::where('coupon_code', $request->coupon_code)
+//                ->where('status', 1)
+//                ->first();
+//
+//            if (!$coupon) {
+//                return back()->with('error', 'Invalid or inactive coupon code.');
+//            }
+//
+//            $now = Carbon::now();
+//
+//            if ($coupon->start_date && $now->lt(Carbon::parse($coupon->start_date))) {
+//                return back()->with('error', 'This coupon is not active yet.');
+//            }
+//
+//            if ($coupon->end_date && $now->gt(Carbon::parse($coupon->end_date))) {
+//                return back()->with('error', 'This coupon has expired.');
+//            }
+//
+//            if ($coupon->amount_spend && $totalAmount < $coupon->amount_spend) {
+//                return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
+//            }
+//
+//            $usedCount = DryOrder::where('customer_id', auth()->id())
+//                ->where('coupon_id', $coupon->id)
+//                ->count();
+//
+//            if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
+//                return back()->with('error', "You have already used this coupon the maximum allowed times.");
+//            }
+//
+//            $discount_amount = $coupon->discount_amount;
+//            $totalAmount -= $discount_amount;
+//            $coupon_id = $coupon->id;
+//        }
+
         if ($request->filled('coupon_code')) {
             $coupon = Coupon::where('coupon_code', $request->coupon_code)
                 ->where('status', 1)
@@ -213,10 +137,22 @@ class UserOrderController extends Controller
                 return back()->with('error', "You have already used this coupon the maximum allowed times.");
             }
 
-            $discount_amount = $coupon->discount_amount;
+            // Apply discount based on coupon type
+            if ($coupon->coupon_type === 'percentage') {
+                $discount_amount = ($totalAmount * $coupon->discount_amount) / 100;
+            } elseif ($coupon->coupon_type === 'fixed') {
+                $discount_amount = $coupon->discount_amount;
+            } else {
+                $discount_amount = 0; // default if coupon type not recognized
+            }
+
+            // Ensure discount does not exceed total amount
+            $discount_amount = min($discount_amount, $totalAmount);
+
             $totalAmount -= $discount_amount;
             $coupon_id = $coupon->id;
         }
+
 
         // Create the order
         $order = DryOrder::create([
@@ -326,6 +262,43 @@ class UserOrderController extends Controller
         $coupon_id = null;
         $discount_amount = 0;
 
+//        if ($request->filled('coupon_code')) {
+//            $coupon = Coupon::where('coupon_code', $request->coupon_code)
+//                ->where('status', 1)
+//                ->first();
+//
+//            if (!$coupon) {
+//                return back()->with('error', 'Invalid or inactive coupon code.');
+//            }
+//
+//            $now = Carbon::now();
+//
+//            if ($coupon->start_date && $now->lt(Carbon::parse($coupon->start_date))) {
+//                return back()->with('error', 'This coupon is not active yet.');
+//            }
+//
+//            if ($coupon->end_date && $now->gt(Carbon::parse($coupon->end_date))) {
+//                return back()->with('error', 'This coupon has expired.');
+//            }
+//
+//            if ($coupon->amount_spend && $total_amount < $coupon->amount_spend) {
+//                return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
+//            }
+//
+//            // Usage limit validation (per user, optional)
+//            $usedCount = Order::where('customer_id', Auth::id())
+//                ->where('coupon_id', $coupon->id)
+//                ->count();
+//
+//            if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
+//                return back()->with('error', "You have already used this coupon the maximum allowed times.");
+//            }
+//            // Apply discount
+//            $discount_amount = $coupon->discount_amount;
+//            $total_amount -= $discount_amount;
+//            $coupon_id = $coupon->id;
+//        }
+
         if ($request->filled('coupon_code')) {
             $coupon = Coupon::where('coupon_code', $request->coupon_code)
                 ->where('status', 1)
@@ -349,7 +322,6 @@ class UserOrderController extends Controller
                 return back()->with('error', "You need to spend at least $coupon->amount_spend to use this coupon.");
             }
 
-            // Usage limit validation (per user, optional)
             $usedCount = Order::where('customer_id', Auth::id())
                 ->where('coupon_id', $coupon->id)
                 ->count();
@@ -357,8 +329,19 @@ class UserOrderController extends Controller
             if ($coupon->use_limit && $usedCount >= $coupon->use_limit) {
                 return back()->with('error', "You have already used this coupon the maximum allowed times.");
             }
-            // Apply discount
-            $discount_amount = $coupon->discount_amount;
+
+            // ✅ Apply discount based on coupon type
+            if ($coupon->coupon_type === 'percentage') {
+                $discount_amount = ($total_amount * $coupon->discount_amount) / 100;
+            } elseif ($coupon->coupon_type === 'fixed') {
+                $discount_amount = $coupon->discount_amount;
+            } else {
+                $discount_amount = 0;
+            }
+
+            // Prevent negative totals
+            $discount_amount = min($discount_amount, $total_amount);
+
             $total_amount -= $discount_amount;
             $coupon_id = $coupon->id;
         }

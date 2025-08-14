@@ -30,6 +30,7 @@ class CouponController extends Controller
     {
         try {
             $request->validate([
+                'coupon_type' => 'required',
                 'coupon_code' => 'required',
                 'discount_amount' => 'required',
                 'start_date' => 'required',
@@ -38,6 +39,7 @@ class CouponController extends Controller
                 'amount_spend' => 'required',
             ]);
             $coupon = new Coupon();
+            $coupon->coupon_type = $request->coupon_type; // Assuming coupon_type is also part of the request
             $coupon->coupon_code = $request->coupon_code;
             $coupon->discount_amount = $request->discount_amount;
             $coupon->start_date = $request->start_date;
@@ -57,6 +59,7 @@ class CouponController extends Controller
     {
         try {
             $request->validate([
+                'coupon_type' => 'required',
                 'coupon_code' => 'required',
                 'discount_amount' => 'required',
                 'start_date' => 'required',
@@ -65,6 +68,7 @@ class CouponController extends Controller
                 'amount_spend' => 'required',
             ]);
             $coupon = Coupon::find($id);
+            $coupon->coupon_type = $request->coupon_type;
             $coupon->coupon_code = $request->coupon_code;
             $coupon->discount_amount = $request->discount_amount;
             $coupon->start_date = $request->start_date;
